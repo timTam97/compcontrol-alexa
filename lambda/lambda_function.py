@@ -16,15 +16,11 @@ logger.setLevel(logging.INFO)
 class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for Skill Launch."""
 
-    def can_handle(self, handler_input):
-        # type: (HandlerInput) -> bool
-
+    def can_handle(self, handler_input: HandlerInput) -> bool:
         return ask_utils.is_request_type("LaunchRequest")(handler_input)
 
-    def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
+    def handle(self, handler_input: HandlerInput) -> Response:
         speak_output = "Try invoking me with a command."
-
         return handler_input.response_builder.speak(speak_output).response
 
 
@@ -35,10 +31,10 @@ class ParentCustomIntentHandler(AbstractRequestHandler):
         self.action = action
         self.intent_name = intent_name
 
-    def can_handle(self, handler_input):
+    def can_handle(self, handler_input: HandlerInput) -> bool:
         return ask_utils.is_intent_name(self.intent_name)(handler_input)
 
-    def handle(self, handler_input):
+    def handle(self, handler_input: HandlerInput) -> Response:
         headers = {"Access-Token": auth.TOKEN, "Content-Type": "application/json"}
         data = '{"body":"' + self.action + '","title":"LENOVO-TIM","type":"note"}'
         r = requests.post(
@@ -50,16 +46,12 @@ class ParentCustomIntentHandler(AbstractRequestHandler):
 
 
 class CatchAllExceptionHandler(AbstractExceptionHandler):
-    def can_handle(self, handler_input, exception):
-        # type: (HandlerInput, Exception) -> bool
+    def can_handle(self, handler_input: HandlerInput, exception: Exception) -> bool:
         return True
 
-    def handle(self, handler_input, exception):
-        # type: (HandlerInput, Exception) -> Response
+    def handle(self, handler_input: HandlerInput, exception: Exception) -> Response:
         logger.error(exception, exc_info=True)
-
         speak_output = "Sorry, there has been an error. Please try again."
-
         return (
             handler_input.response_builder.speak(speak_output)
             .ask(speak_output)
