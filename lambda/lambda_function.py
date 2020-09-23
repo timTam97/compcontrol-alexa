@@ -36,8 +36,14 @@ class ParentPushbulletIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input: HandlerInput) -> Response:
         headers = {"Access-Token": auth.TOKEN, "Content-Type": "application/json"}
-        data = '{"body":"' + self.action + '","title":"LENOVO-TIM","type":"note"}'
-        r = requests.post(
+        data = (
+            '{"body":"'
+            + self.action
+            + '","title":"'
+            + auth.COMP_NAME
+            + '","type":"note"}'
+        )
+        requests.post(
             "https://api.pushbullet.com/v2/pushes", data=data.encode(), headers=headers
         )
         return handler_input.response_builder.speak(
