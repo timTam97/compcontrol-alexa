@@ -1,0 +1,64 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "my computer",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "SleepIntent",
+          "slots": [],
+          "samples": [
+            "sleep"
+          ]
+        },
+        {
+          "name": "LockIntent",
+          "slots": [],
+          "samples": [
+            "lock"
+          ]
+        },
+        {
+          "name": "HibernateIntent",
+          "slots": [],
+          "samples": [
+            "hibernate"
+          ]
+        },
+        {
+          "name": "ShutDownIntent",
+          "slots": [],
+          "samples": [
+            "turn off",
+            "shutdown",
+            "shut down"
+          ]
+        },
+        {
+          "name": "OpenVNCIntent",
+          "slots": [],
+          "samples": [
+            "open vnc"
+          ]
+        }
+      ],
+      "types": []
+    }
+  },
+  "version": "3"
+}
