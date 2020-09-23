@@ -24,7 +24,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
         return handler_input.response_builder.speak(speak_output).response
 
 
-class ParentCustomIntentHandler(AbstractRequestHandler):
+class ParentPushbulletIntentHandler(AbstractRequestHandler):
     """Handler for all pushbulet-realted custom intents. """
 
     def __init__(self, action: str, intent_name: str):
@@ -62,11 +62,11 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 sb = SkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
-sb.add_request_handler(ParentCustomIntentHandler("sleep", "SleepIntent"))
-sb.add_request_handler(ParentCustomIntentHandler("lock", "LockIntent"))
-sb.add_request_handler(ParentCustomIntentHandler("hibernate", "HibernateIntent"))
-sb.add_request_handler(ParentCustomIntentHandler("shutdown", "ShutDownIntent"))
-sb.add_request_handler(ParentCustomIntentHandler("open vnc", "OpenVNCIntent"))
+sb.add_request_handler(ParentPushbulletIntentHandler("sleep", "SleepIntent"))
+sb.add_request_handler(ParentPushbulletIntentHandler("lock", "LockIntent"))
+sb.add_request_handler(ParentPushbulletIntentHandler("hibernate", "HibernateIntent"))
+sb.add_request_handler(ParentPushbulletIntentHandler("shutdown", "ShutDownIntent"))
+sb.add_request_handler(ParentPushbulletIntentHandler("open vnc", "OpenVNCIntent"))
 
 sb.add_exception_handler(CatchAllExceptionHandler())
 
