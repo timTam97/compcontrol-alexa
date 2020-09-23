@@ -1,13 +1,12 @@
-import auth
 import logging
+
 import ask_sdk_core.utils as ask_utils
+import auth
 import requests
-
-from ask_sdk_core.skill_builder import SkillBuilder
-from ask_sdk_core.dispatch_components import AbstractRequestHandler
-from ask_sdk_core.dispatch_components import AbstractExceptionHandler
+from ask_sdk_core.dispatch_components import (AbstractExceptionHandler,
+                                              AbstractRequestHandler)
 from ask_sdk_core.handler_input import HandlerInput
-
+from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_model import Response
 
 logger = logging.getLogger(__name__)
@@ -30,6 +29,8 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
 
 class ParentCustomIntentHandler(AbstractRequestHandler):
+    """Handler for all pushbulet-realted custom intents. """
+
     def __init__(self, action: str, intent_name: str):
         self.action = action
         self.intent_name = intent_name
@@ -64,11 +65,6 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
             .ask(speak_output)
             .response
         )
-
-
-# The SkillBuilder object acts as the entry point for your skill, routing all request and response
-# payloads to the handlers above. Make sure any new handlers or interceptors you've
-# defined are included below. The order matters - they're processed top to bottom.
 
 
 sb = SkillBuilder()
