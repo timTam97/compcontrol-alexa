@@ -71,7 +71,7 @@ sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(ParentPushbulletIntentHandler("sleep", "SleepIntent"))
 sb.add_request_handler(ParentPushbulletIntentHandler("lock", "LockIntent"))
 sb.add_request_handler(ParentPushbulletIntentHandler("hibernate", "HibernateIntent"))
-sb.add_request_handler(ParentPushbulletIntentHandler("shutdown", "ShutDownIntent"))
+sb.add_request_handler(ParentPushbulletIntentHandler("shut down", "ShutDownIntent"))
 sb.add_request_handler(ParentPushbulletIntentHandler("open vnc", "OpenVNCIntent"))
 
 sb.add_exception_handler(CatchAllExceptionHandler())
