@@ -35,16 +35,9 @@ class ParentPushbulletIntentHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name(self.intent_name)(handler_input)
 
     def handle(self, handler_input: HandlerInput) -> Response:
-        headers = {"Access-Token": auth.TOKEN, "Content-Type": "application/json"}
-        data = (
-            '{"body":"'
-            + self.action
-            + '","title":"'
-            + auth.COMP_NAME
-            + '","type":"note"}'
-        )
+        headers = {"auth": auth.TOKEN}
         requests.post(
-            "https://api.pushbullet.com/v2/pushes", data=data.encode(), headers=headers
+            "https://command.timsam.live/send/" + self.action, headers=headers
         )
         return handler_input.response_builder.speak(
             '<audio src="soundbank://soundlibrary/musical/amzn_sfx_bell_short_chime_03"/>'
@@ -71,8 +64,7 @@ sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(ParentPushbulletIntentHandler("sleep", "SleepIntent"))
 sb.add_request_handler(ParentPushbulletIntentHandler("lock", "LockIntent"))
 sb.add_request_handler(ParentPushbulletIntentHandler("hibernate", "HibernateIntent"))
-sb.add_request_handler(ParentPushbulletIntentHandler("shut down", "ShutDownIntent"))
-sb.add_request_handler(ParentPushbulletIntentHandler("open vnc", "OpenVNCIntent"))
+sb.add_request_handler(ParentPushbulletIntentHandler("shutdown", "ShutDownIntent"))
 
 sb.add_exception_handler(CatchAllExceptionHandler())
 
